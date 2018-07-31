@@ -1,0 +1,264 @@
+import org.primefaces.event.SelectEvent;
+
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+@ManagedBean(name = "userView")
+@ViewScoped
+public class UserView implements Serializable {
+
+    private static final String NAME_PATTERN = "^[a-z_-]{2,20}$";
+    private static final String USERNAME_PATTERN = "^[a-z0-9_-]{2,20}$";
+    private static final String NUMBER_PATTERN = "^[0-9]{2,10}$";
+    private static final String EMAIL_PATTERN = "^(.+)@(.+)$";
+    private static final String DATE_PATTERN = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+
+    private static final long serialVersionUID = -4876525344689517081L;
+    private Customer customer;
+    private List<Customer> customers;
+    private String country;
+    private String city;
+    private int id;
+    private boolean acceptTerms;
+    private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
+    private Map<String,String> countries;
+    private Map<String,String> cities;
+
+    @ManagedProperty(value = "#{customerService}")
+    private CustomerService customerService;
+
+    @PostConstruct
+    public void init() {
+        countries = new HashMap<>();
+        countries.put("USA", "USA");
+        countries.put("Germany", "Germany");
+        countries.put("Brazil", "Brazil");
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("New York", "New York");
+        map.put("San Francisco", "San Francisco");
+        map.put("Denver", "Denver");
+        data.put("USA", map);
+
+        map = new HashMap<>();
+        map.put("Berlin", "Berlin");
+        map.put("Munich", "Munich");
+        map.put("Frankfurt", "Frankfurt");
+        data.put("Germany", map);
+
+        map = new HashMap<>();
+        map.put("Sao Paolo", "Sao Paolo");
+        map.put("Rio de Janerio", "Rio de Janerio");
+        map.put("Salvador", "Salvador");
+        data.put("Brazil", map);
+
+        customer = new Customer();
+        customers = new ArrayList<>();
+        customers = customerService.getList();
+        findCustomer(this.id);
+        onCountryChange();
+    }
+
+    public void setFirstName(String firstName) {
+        if(new RegexValidator(NAME_PATTERN).validate(firstName))
+        customer.setFirstName(firstName);
+    }
+
+    public String getFirstName() {
+        return customer.getFirstName();
+    }
+
+    public void setLastName(String lastName) {
+        if(new RegexValidator(NAME_PATTERN).validate(lastName))
+        customer.setLastName(lastName);
+    }
+
+    public String getLastName() {
+        return customer.getLastName();
+    }
+
+    public void setUser(String user) {
+        if(new RegexValidator(USERNAME_PATTERN).validate(user))
+        customer.setUser(user);
+    }
+
+    public String getUser() {
+        return customer.getUser();
+    }
+
+    public String getCountry() {
+        return  customer.getCountry();
+    }
+
+    public void setCountry(String country) {
+        if (new RegexValidator(NAME_PATTERN).validate(country)) {
+            customer.setCountry(country);
+        }
+        this.country = country;
+    }
+
+    public String getCity() {
+        return customer.getCity();
+    }
+
+    public void setCity(String city) {
+        if (new RegexValidator(NAME_PATTERN).validate(city)) {
+            customer.setCity(city);
+        }
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return customer.getStreet();
+    }
+
+    public void setStreet(String street) {
+        if (new RegexValidator(NAME_PATTERN).validate(street))
+        customer.setStreet(street);
+    }
+
+    public String getZipCode() {
+        return customer.getZipCode();
+    }
+
+    public void setZipCode(String zipCode) {
+        if (new RegexValidator(NUMBER_PATTERN).validate(zipCode))
+        customer.setZipCode(zipCode);
+    }
+
+    public String getPhoneNumber() {
+        return customer.getPhoneNumber();
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        if (new RegexValidator(NUMBER_PATTERN).validate(phoneNumber))
+        customer.setPhoneNumber(phoneNumber);
+    }
+
+    public String getEmail() {
+        return customer.getEmail();
+    }
+
+    public void setEmail(String email) {
+        if (new RegexValidator(EMAIL_PATTERN).validate(email))
+        customer.setEmail(email);
+    }
+
+    public Date getBirthDate() {
+        return customer.getBirthDate();
+    }
+
+    public void setBirthDate(Date birthDate) {
+        if (new RegexValidator(DATE_PATTERN).validateDate(birthDate))
+        customer.setBirthDate(birthDate);
+    }
+
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isAcceptTerms() {
+        return acceptTerms;
+    }
+
+    public void setAcceptTerms(boolean acceptTerms) {
+        this.acceptTerms = acceptTerms;
+    }
+
+    public Map<String, Map<String, String>> getData() {
+        return data;
+    }
+
+    public Map<String, String> getCountries() {
+        return countries;
+    }
+
+    public Map<String, String> getCities() {
+        return cities;
+    }
+
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    public void onCountryChange() {
+        if(country !=null && !country.equals(""))
+            cities = data.get(country);
+        else
+            cities = new HashMap<>();
+    }
+
+    public void displayLocation() {
+        FacesMessage msg;
+        if(city != null && country != null)
+            msg = new FacesMessage("Selected", city + " of " + country);
+        else
+            msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid", "City is not selected.");
+
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+
+    public String reinit() {
+        customer = new Customer();
+        if (customers.contains(customer)) {
+            return null;
+        }
+        return "home?faces-redirect=true";
+    }
+
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("YYYY/dd/MM");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+
+    private void findCustomer(int id){
+        for (Customer element : customers) {
+            if (element.getId() == id){
+                customer = element;
+            }
+        }
+    }
+
+    public void addMessage() {
+        LanguageResource lrs = new LanguageResource();
+        if(customers.contains(customer)) {
+            FacesMessage msg = new FacesMessage(lrs.getLanguageResource("dublicated"), lrs.getLanguageResource("alreadyExist"));
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        else {
+            FacesMessage msg = new FacesMessage(lrs.getLanguageResource("added"));
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+
+}

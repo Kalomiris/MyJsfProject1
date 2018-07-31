@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Customer</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="layout/template.xhtml">
+
+        <ui:define name="content">
+            <h:form id="form1">
+                <p:growl id="messages" showDetail="true"/>
+                <p:outputPanel id="customers1">
+                    <p:tab>
+                        <p:dataTable id="customers" var="customer" value="#{customerView.customers}" rows="10" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15" filteredValue="#{customerView.filteredCustomers}">
+
+                            <f:facet name="header">
+                                <h1>#{msg['details']}</h1>
+                            </f:facet>
+
+                            <f:facet name="header">
+                                <div align="left">
+                                    <p:commandButton value="#{msg['add']}" action="editCustomer?faces-redirect=true"/>
+                                </div>
+                            </f:facet>
+
+                            <p:column headerText="#{msg['firstName']}" sortBy="#{customer.firstName}" filterBy="#{customer.firstName}" filterMatchMode="contains">
+                                <h:outputText value="#{customer.firstName}"/>
+                            </p:column>
+
+                            <p:column headerText="#{msg['lastName']}" sortBy="#{customer.lastName}" filterBy="#{customer.lastName}">
+                                <h:outputText value="#{customer.lastName}"/>
+                            </p:column>
+
+                            <p:column headerText="#{msg['user']}" sortBy="#{customer.user}" filterBy="#{customer.user}">
+                                <h:outputText value="#{customer.user}"/>
+                            </p:column>
+
+                            <p:column style="width:90px">
+                                <p:button outcome="editCustomer?faces-redirect=true" icon="ui-icon-pencil">
+                                    <f:param name="id" value="#{customer.id}" />
+                                </p:button>
+                                <p:commandButton icon="ui-icon-trash" actionListener="#{customerView.deleteMessage}" update=":form1:customers1 :form1:messages" process=":form1:customers1" >
+                                    <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                                    <p:ajax update=""/>
+                                    <p:collector value="#{customer}" removeFrom="#{customerView.customers}" unique="true"/>
+                                </p:commandButton>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>
+                </p:outputPanel>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
