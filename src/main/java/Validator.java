@@ -3,11 +3,11 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexValidator implements Serializable {
+public class Validator implements Serializable {
     private static final long serialVersionUID = 3581515804518705261L;
     private Pattern pattern;
 
-    public RegexValidator(String REGEX){
+    public Validator(String REGEX){
         pattern = Pattern.compile(REGEX);
     }
 

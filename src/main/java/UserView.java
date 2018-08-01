@@ -1,3 +1,4 @@
+import model.Customer;
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
@@ -27,7 +28,7 @@ public class UserView implements Serializable {
     private String city;
     private int id;
     private boolean acceptTerms;
-    private Map<String,Map<String,String>> data = new HashMap<String, Map<String,String>>();
+    private Map<String,Map<String,String>> data = new HashMap<>();
     private Map<String,String> countries;
     private Map<String,String> cities;
 
@@ -41,7 +42,7 @@ public class UserView implements Serializable {
         countries.put("Germany", "Germany");
         countries.put("Brazil", "Brazil");
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         map.put("New York", "New York");
         map.put("San Francisco", "San Francisco");
         map.put("Denver", "Denver");
@@ -67,7 +68,7 @@ public class UserView implements Serializable {
     }
 
     public void setFirstName(String firstName) {
-        if(new RegexValidator(NAME_PATTERN).validate(firstName))
+        if(new Validator(NAME_PATTERN).validate(firstName))
         customer.setFirstName(firstName);
     }
 
@@ -76,7 +77,7 @@ public class UserView implements Serializable {
     }
 
     public void setLastName(String lastName) {
-        if(new RegexValidator(NAME_PATTERN).validate(lastName))
+        if(new Validator(NAME_PATTERN).validate(lastName))
         customer.setLastName(lastName);
     }
 
@@ -85,7 +86,7 @@ public class UserView implements Serializable {
     }
 
     public void setUser(String user) {
-        if(new RegexValidator(USERNAME_PATTERN).validate(user))
+        if(new Validator(USERNAME_PATTERN).validate(user))
         customer.setUser(user);
     }
 
@@ -98,7 +99,7 @@ public class UserView implements Serializable {
     }
 
     public void setCountry(String country) {
-        if (new RegexValidator(NAME_PATTERN).validate(country)) {
+        if (new Validator(NAME_PATTERN).validate(country)) {
             customer.setCountry(country);
         }
         this.country = country;
@@ -109,7 +110,7 @@ public class UserView implements Serializable {
     }
 
     public void setCity(String city) {
-        if (new RegexValidator(NAME_PATTERN).validate(city)) {
+        if (new Validator(NAME_PATTERN).validate(city)) {
             customer.setCity(city);
         }
         this.city = city;
@@ -120,7 +121,7 @@ public class UserView implements Serializable {
     }
 
     public void setStreet(String street) {
-        if (new RegexValidator(NAME_PATTERN).validate(street))
+        if (new Validator(NAME_PATTERN).validate(street))
         customer.setStreet(street);
     }
 
@@ -129,7 +130,7 @@ public class UserView implements Serializable {
     }
 
     public void setZipCode(String zipCode) {
-        if (new RegexValidator(NUMBER_PATTERN).validate(zipCode))
+        if (new Validator(NUMBER_PATTERN).validate(zipCode))
         customer.setZipCode(zipCode);
     }
 
@@ -138,7 +139,7 @@ public class UserView implements Serializable {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        if (new RegexValidator(NUMBER_PATTERN).validate(phoneNumber))
+        if (new Validator(NUMBER_PATTERN).validate(phoneNumber))
         customer.setPhoneNumber(phoneNumber);
     }
 
@@ -147,7 +148,7 @@ public class UserView implements Serializable {
     }
 
     public void setEmail(String email) {
-        if (new RegexValidator(EMAIL_PATTERN).validate(email))
+        if (new Validator(EMAIL_PATTERN).validate(email))
         customer.setEmail(email);
     }
 
@@ -156,7 +157,7 @@ public class UserView implements Serializable {
     }
 
     public void setBirthDate(Date birthDate) {
-        if (new RegexValidator(DATE_PATTERN).validateDate(birthDate))
+        if (new Validator(DATE_PATTERN).validateDate(birthDate))
         customer.setBirthDate(birthDate);
     }
 
