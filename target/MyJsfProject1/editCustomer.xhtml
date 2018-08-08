@@ -1,0 +1,122 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>model.Customer</title>
+    <f:metadata>
+        <f:viewParam name="id" value="#{userView.id}" required="false"/>
+        <f:viewAction action="#{userView.init}" />
+    </f:metadata>
+</h:head>
+
+<h:body>
+    <ui:composition template="layout/template.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:panel id="basic" header="#{msg['edit']}" style="margin-bottom:20px">
+                    <h:panelGrid columns="3">
+
+                        <p:outputLabel for="firstname" value="#{msg['fName']}"/>
+                        <p:inputText id="firstname" value="#{userView.firstName}" required="true" label="Firstname">
+                            <f:validateLength minimum="2" maximum="10"/>
+                            <p:ajax update="msgFirstname" event="keyup"/>
+                        </p:inputText>
+                        <p:message id="msgFirstname" for="firstname" display="icon"/>
+
+                        <p:outputLabel for="lastname" value="#{msg['lName']}"/>
+                        <p:inputText id="lastname" value="#{userView.lastName}" required="true" label="Lastname">
+                            <f:validateLength minimum="2" maximum="10"/>
+                            <p:ajax update="msgLastname" event="keyup"/>
+                        </p:inputText>
+                        <p:message for="lastname" id="msgLastname" display="icon"/>
+
+                        <p:outputLabel for="username" value="#{msg['userName']}"/>
+                        <p:inputText id="username" value="#{userView.user}" label="Username" required="true">
+                            <f:validateLength minimum="2" maximum="10"/>
+                            <p:ajax update="msgUsername" event="keyup"/>
+                        </p:inputText>
+                        <p:message for="username" id="msgUsername" display="icon"/>
+
+                        <p:outputLabel for="birthDate" value="#{msg['birth']}"/>
+                        <p:calendar id="birthDate" value="#{userView.birthDate}" required="true">
+                            <p:ajax event="dateSelect" listener="#{userView.onDateSelect}" update="msgbirthDate"/>
+                        </p:calendar>
+                        <p:message for="birthDate" id="msgbirthDate" display="icon"/>
+
+                        <p:outputLabel for="country" value="#{msg['country']}"/>
+                        <p:selectOneMenu id="country" value="#{userView.country}" required="true" style="width:190px">
+                            <p:ajax listener="#{userView.onCountryChange}" update="city"/>
+                            <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{userView.countries}"/>
+                            <f:validateLength minimum="2" maximum="20"/>
+                        </p:selectOneMenu>
+                        <p:message for="country" id="msgcountry" display="icon"/>
+
+                        <p:outputLabel for="city" value="#{msg['city']}"/>
+                        <p:selectOneMenu id="city" value="#{userView.city}" required="true" style="width:190px">
+                            <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{userView.cities}"/>
+                            <f:validateLength minimum="2" maximum="20"/>
+                        </p:selectOneMenu>
+                        <p:message for="city" id="msgcity" display="icon"/>
+
+                        <p:outputLabel for="street" value="#{msg['street']}"/>
+                        <p:inputText id="street" value="#{userView.street}" label="Street" required="true">
+                            <f:validateLength minimum="2" maximum="20"/>
+                            <p:ajax update="msgStreet" event="keyup"/>
+                        </p:inputText>
+                        <p:message for="street" id="msgStreet" display="icon"/>
+
+                        <p:outputLabel for="zip" value="#{msg['zip']}"/>
+                        <p:inputText id="zip" value="#{userView.zipCode}" label="Zipcode" required="true">
+                            <f:validateLength minimum="2" maximum="20"/>
+                            <p:ajax update="msgZip" event="keyup"/>
+                        </p:inputText>
+                        <p:message for="zip" id="msgZip" display="icon"/>
+
+                        <p:outputLabel for="phone" value="#{msg['phone']}"/>
+                        <p:inputText id="phone" value="#{userView.phoneNumber}" label="Phonenumber" required="true">
+                            <f:validateLength minimum="2" maximum="20"/>
+                            <p:ajax update="msgPhone" event="keyup"/>
+                        </p:inputText>
+                        <p:message for="phone" id="msgPhone" display="icon"/>
+
+                        <p:outputLabel for="email" value="#{msg['email']}"/>
+                        <p:inputText id="email" value="#{userView.email}" label="Email" required="true">
+
+                            <p:ajax update="msgEmail" event="keyup"/>
+                        </p:inputText>
+                        <p:message for="email" id="msgEmail" display="icon"/>
+
+                        <h:outputText value="#{msg['terms']}"/>
+                        <p:selectBooleanCheckbox value="#{userView.acceptTerms}"/>
+
+                        <f:facet name="footer">
+                            <p:remoteCommand id="rc" name="rc" update="msgs" actionListener="#{userView.addMessage}"/>
+                            <p:commandButton delay="1500" value="#{msg['save']}" onclick="rc()" action="#{userView.reinit}" icon="ui-icon-check">
+                                <p:collector value="#{userView.customer}" addTo="#{userView.customers}" unique="true"/>
+                            </p:commandButton>
+
+                            <p:commandButton type="reset" value="#{msg['reset']}" icon="ui-icon-refresh" style="margin-right:20px;"/>
+                        </f:facet>
+
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+
+            <p:separator/>
+
+            <h:form>
+                <h:commandButton action="home?faces-redirect=true" value="#{msg['back']}"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

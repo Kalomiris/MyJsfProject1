@@ -1,17 +1,21 @@
+package controller;
+
+import Service.CustomerService;
+import language.LanguageResource;
 import model.Customer;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean(name = "customerView")
-@ViewScoped
-public class CustomerView implements Serializable {
+@RequestScoped
+public class CustomerController implements Serializable {
 
     private static final long serialVersionUID = 2744527592489782284L;
     private List<Customer> customers;

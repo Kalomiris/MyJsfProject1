@@ -1,6 +1,8 @@
+package language;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
@@ -9,7 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @ManagedBean(name="language", eager = true)
-@SessionScoped
+@RequestScoped
 public class LanguageBean implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -19,9 +21,9 @@ public class LanguageBean implements Serializable{
     private static Map<String,Object> countries;
 
     static{
-        countries = new LinkedHashMap<String,Object>();
-        countries.put("English", Locale.ENGLISH); //label, value
-        countries.put("Spanish", new Locale.Builder().setLanguage("es").setRegion("ES").build());
+        countries = new LinkedHashMap<>();
+        countries.put("English_US", Locale.ENGLISH); //label, value
+        countries.put("Spanish_ES", new Locale.Builder().setLanguage("es").setRegion("ES").build()); //label, value
     }
 
     public Map<String, Object> getCountriesInMap() {

@@ -1,25 +1,30 @@
+package controller;
+
+import Service.CustomerService;
+import language.LanguageResource;
 import model.Customer;
 import org.primefaces.event.SelectEvent;
+import validation.Validator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @ManagedBean(name = "userView")
-@ViewScoped
-public class UserView implements Serializable {
+@RequestScoped
+public class UserController implements Serializable {
 
     private static final String NAME_PATTERN = "^[a-z_-]{2,20}$";
     private static final String USERNAME_PATTERN = "^[a-z0-9_-]{2,20}$";
     private static final String NUMBER_PATTERN = "^[0-9]{2,10}$";
     private static final String EMAIL_PATTERN = "^(.+)@(.+)$";
-    private static final String DATE_PATTERN = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+    //private static final String DATE_PATTERN = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 
     private static final long serialVersionUID = -4876525344689517081L;
     private Customer customer;
@@ -157,7 +162,6 @@ public class UserView implements Serializable {
     }
 
     public void setBirthDate(Date birthDate) {
-        if (new Validator(DATE_PATTERN).validateDate(birthDate))
         customer.setBirthDate(birthDate);
     }
 
@@ -190,6 +194,7 @@ public class UserView implements Serializable {
         this.acceptTerms = acceptTerms;
     }
 
+    //TODO:check for usage
     public Map<String, Map<String, String>> getData() {
         return data;
     }
@@ -202,10 +207,11 @@ public class UserView implements Serializable {
         return cities;
     }
 
+    //TODO:check for usage
     public CustomerService getCustomerService() {
         return customerService;
     }
-
+    //TODO:check for usage
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
@@ -216,7 +222,7 @@ public class UserView implements Serializable {
         else
             cities = new HashMap<>();
     }
-
+    //TODO:check for usage
     public void displayLocation() {
         FacesMessage msg;
         if(city != null && country != null)

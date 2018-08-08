@@ -2,12 +2,15 @@ package dataBase;
 
 import model.Customer;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class DataBase {
+public class DataBase implements Serializable{
+
+    private static final long serialVersionUID = -1058834760623324195L;
 
     public static List<Customer> createData(){
         Customer customer1 = new Customer();
