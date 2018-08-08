@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@ManagedBean(name = "userView")
+@ManagedBean(name = "userController")
 @RequestScoped
 public class UserController implements Serializable {
 
@@ -67,7 +67,7 @@ public class UserController implements Serializable {
 
         customer = new Customer();
         customers = new ArrayList<>();
-        customers = customerService.getList();
+        customers = CustomerService.getList();
         findCustomer(this.id);
         onCountryChange();
     }

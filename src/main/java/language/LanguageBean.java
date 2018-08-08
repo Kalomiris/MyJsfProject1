@@ -1,8 +1,8 @@
 package language;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @ManagedBean(name="language", eager = true)
-@RequestScoped
+@ApplicationScoped
 public class LanguageBean implements Serializable{
 
     private static final long serialVersionUID = 1L;

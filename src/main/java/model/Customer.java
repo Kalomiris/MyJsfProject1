@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
-
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = -3236628994413307722L;
@@ -128,12 +127,4 @@ public class Customer implements Serializable {
         return user.equals(customer.user);
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + user.hashCode();
-        return result;
-    }
 }

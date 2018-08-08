@@ -11,8 +11,11 @@ import java.util.List;
 public class DataBase implements Serializable{
 
     private static final long serialVersionUID = -1058834760623324195L;
+    private static List<Customer> customerList = new ArrayList<>();
 
-    public static List<Customer> createData(){
+    private static boolean alreadyExecuted = false;
+
+    private static void initData(){
         Customer customer1 = new Customer();
         customer1.setFirstName("John");
         customer1.setLastName("Daniz");
@@ -73,14 +76,30 @@ public class DataBase implements Serializable{
         customer5.setPhoneNumber("65876882");
         customer5.setEmail("jim1@gmail.com");
 
-        List<Customer> customerList = new ArrayList<>();
         customerList.add(customer1);
         customerList.add(customer2);
         customerList.add(customer3);
         customerList.add(customer4);
         customerList.add(customer5);
+    }
 
+    public static void runOnlyOnce(){
+        if (!alreadyExecuted) {
+            initData();
+            alreadyExecuted = true;
+        }
+    }
+
+    public static List<Customer> getCustomerList() {
         return customerList;
+    }
+
+    public static void save(Customer customer){
+        customerList.add(customer);
+    }
+
+    public static void deleteCustomer(Customer customer){
+        customerList.remove(customer);
     }
 
     private static Date randomDateOfBirth() {
