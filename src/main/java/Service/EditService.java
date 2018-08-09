@@ -1,6 +1,6 @@
 package Service;
 
-import dataBase.DataBase;
+import dataBase.DataBaseSimulation;
 import model.Customer;
 
 import java.util.Map;
@@ -8,31 +8,31 @@ import java.util.Map;
 public class EditService {
 
     public static void initLocation() {
-        DataBase.runOnlyOnceLocation();
+        DataBaseSimulation.runOnlyOnceLocation();
     }
 
     public static Map<String, String> getCountries() {
-        return DataBase.getCountries();
+        return DataBaseSimulation.getCountries();
     }
 
     public static Map<String, String> getCities() {
-        return DataBase.getCities();
+        return DataBaseSimulation.getCities();
     }
 
     public static void onCountryChange(String country) {
-        DataBase.onCountryChange(country);
+        DataBaseSimulation.onCountryChange(country);
     }
 
     public static Customer findCustomer(int id) {
         if (id != 0) {
-            return DataBase.find(id);
+            return DataBaseSimulation.find(id);
         }
         return null;
     }
 
     public static boolean isDuplex(Customer customer){
         if (customer != null){
-            return DataBase.isDuplex(customer);
+            return DataBaseSimulation.isDuplex(customer);
         }
         //TODO: throw exception
         return false;
@@ -40,6 +40,6 @@ public class EditService {
 
     public static void saveCustomer(Customer customer){
         if (customer != null)
-        DataBase.save(customer);
+        DataBaseSimulation.save(customer);
     }
 }

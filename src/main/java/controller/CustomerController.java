@@ -1,7 +1,7 @@
 package controller;
 
 import Service.CustomerService;
-import language.LanguageResource;
+import utils.Localizer;
 import model.Customer;
 
 import javax.annotation.PostConstruct;
@@ -66,7 +66,7 @@ public class CustomerController implements Serializable {
 //    }
 
     public void deleteMessage() {
-        LanguageResource lrs = new LanguageResource();
+        Localizer lrs = new Localizer();
         addMessage(lrs.getLanguageResource("successfull"), lrs.getLanguageResource("deleted"));
     }
 

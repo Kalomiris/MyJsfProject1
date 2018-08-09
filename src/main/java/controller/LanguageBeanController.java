@@ -1,4 +1,6 @@
-package language;
+package controller;
+
+import utils.Localizer;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
@@ -10,9 +12,9 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
-@ManagedBean(name="language", eager = true)
+@ManagedBean(name= "utils", eager = true)
 @ApplicationScoped
-public class LanguageBean implements Serializable{
+public class LanguageBeanController implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +56,7 @@ public class LanguageBean implements Serializable{
     }
 
     private void addMessage() {
-        LanguageResource lrs = new LanguageResource();
+        Localizer lrs = new Localizer();
         FacesContext.getCurrentInstance().addMessage
                 (null, new FacesMessage(FacesMessage.SEVERITY_INFO, lrs.getLanguageResource("successfull"),  lrs.getLanguageResource("languageReverse")));
     }

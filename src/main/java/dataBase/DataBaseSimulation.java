@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
-public class DataBase implements Serializable {
+public class DataBaseSimulation implements Serializable {
 
     private static final long serialVersionUID = -1058834760623324195L;
 

@@ -6,10 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <title>model.Customer</title>
     <f:metadata>
-        <f:viewParam name="id" value="#{userController.id}" required="false"/>
-        <f:viewAction action="#{userController.init}" />
+        <f:viewParam name="id" value="#{editController.id}" required="false"/>
+        <f:viewAction action="#{editController.findCustomer(editController.id)}" />
     </f:metadata>
 </h:head>
 
@@ -23,85 +22,83 @@
                     <h:panelGrid columns="3">
 
                         <p:outputLabel for="firstname" value="#{msg['fName']}"/>
-                        <p:inputText id="firstname" value="#{userController.firstName}" required="true" label="Firstname">
-                            <f:validateLength minimum="2" maximum="10"/>
+                        <p:inputText id="firstname" value="#{editController.firstName}" required="true" label="Firstname">
+                            <f:validateLength minimum="2" maximum="40"/>
                             <p:ajax update="msgFirstname" event="keyup"/>
                         </p:inputText>
                         <p:message id="msgFirstname" for="firstname" display="icon"/>
 
                         <p:outputLabel for="lastname" value="#{msg['lName']}"/>
-                        <p:inputText id="lastname" value="#{userController.lastName}" required="true" label="Lastname">
-                            <f:validateLength minimum="2" maximum="10"/>
+                        <p:inputText id="lastname" value="#{editController.lastName}" required="true" label="Lastname">
+                            <f:validateLength minimum="2" maximum="40"/>
                             <p:ajax update="msgLastname" event="keyup"/>
                         </p:inputText>
                         <p:message for="lastname" id="msgLastname" display="icon"/>
 
                         <p:outputLabel for="username" value="#{msg['userName']}"/>
-                        <p:inputText id="username" value="#{userController.user}" label="Username" required="true">
-                            <f:validateLength minimum="2" maximum="10"/>
+                        <p:inputText id="username" value="#{editController.user}" label="Username" required="true">
+                            <f:validateLength minimum="2" maximum="40"/>
                             <p:ajax update="msgUsername" event="keyup"/>
                         </p:inputText>
                         <p:message for="username" id="msgUsername" display="icon"/>
 
                         <p:outputLabel for="birthDate" value="#{msg['birth']}"/>
-                        <p:calendar id="birthDate" value="#{userController.birthDate}" required="true">
-                            <p:ajax event="dateSelect" listener="#{userController.onDateSelect}" update="msgbirthDate"/>
+                        <p:calendar id="birthDate" value="#{editController.birthDate}" required="true">
+                            <p:ajax event="dateSelect" listener="#{editController.onDateSelect}" update="msgbirthDate"/>
                         </p:calendar>
                         <p:message for="birthDate" id="msgbirthDate" display="icon"/>
 
                         <p:outputLabel for="country" value="#{msg['country']}"/>
-                        <p:selectOneMenu id="country" value="#{userController.country}" required="true" style="width:190px">
-                            <p:ajax listener="#{userController.onCountryChange}" update="city"/>
+                        <p:selectOneMenu id="country" value="#{editController.country}" required="true" style="width:190px">
+                            <p:ajax listener="#{editController.onCountryChange}" update="city"/>
                             <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
-                            <f:selectItems value="#{userController.countries}"/>
+                            <f:selectItems value="#{editController.countries}"/>
                             <f:validateLength minimum="2" maximum="20"/>
                         </p:selectOneMenu>
                         <p:message for="country" id="msgcountry" display="icon"/>
 
                         <p:outputLabel for="city" value="#{msg['city']}"/>
-                        <p:selectOneMenu id="city" value="#{userController.city}" required="true" style="width:190px">
+                        <p:selectOneMenu id="city" value="#{editController.city}" required="true" style="width:190px">
                             <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true"/>
-                            <f:selectItems value="#{userController.cities}"/>
-                            <f:validateLength minimum="2" maximum="20"/>
+                            <f:selectItems value="#{editController.cities}"/>
+
                         </p:selectOneMenu>
                         <p:message for="city" id="msgcity" display="icon"/>
 
                         <p:outputLabel for="street" value="#{msg['street']}"/>
-                        <p:inputText id="street" value="#{userController.street}" label="Street" required="true">
-                            <f:validateLength minimum="2" maximum="20"/>
+                        <p:inputText id="street" value="#{editController.street}" label="Street" required="true">
+                            <f:validateLength minimum="2" maximum="40"/>
                             <p:ajax update="msgStreet" event="keyup"/>
                         </p:inputText>
                         <p:message for="street" id="msgStreet" display="icon"/>
 
                         <p:outputLabel for="zip" value="#{msg['zip']}"/>
-                        <p:inputText id="zip" value="#{userController.zipCode}" label="Zipcode" required="true">
+                        <p:inputText id="zip" value="#{editController.zipCode}" label="Zipcode" required="true">
                             <f:validateLength minimum="2" maximum="20"/>
                             <p:ajax update="msgZip" event="keyup"/>
                         </p:inputText>
                         <p:message for="zip" id="msgZip" display="icon"/>
 
                         <p:outputLabel for="phone" value="#{msg['phone']}"/>
-                        <p:inputText id="phone" value="#{userController.phoneNumber}" label="Phonenumber" required="true">
+                        <p:inputText id="phone" value="#{editController.phoneNumber}" label="Phonenumber" required="true">
                             <f:validateLength minimum="2" maximum="20"/>
                             <p:ajax update="msgPhone" event="keyup"/>
                         </p:inputText>
                         <p:message for="phone" id="msgPhone" display="icon"/>
 
                         <p:outputLabel for="email" value="#{msg['email']}"/>
-                        <p:inputText id="email" value="#{userController.email}" label="Email" required="true">
+                        <p:inputText id="email" value="#{editController.email}" label="Email" required="true">
 
                             <p:ajax update="msgEmail" event="keyup"/>
                         </p:inputText>
                         <p:message for="email" id="msgEmail" display="icon"/>
 
                         <h:outputText value="#{msg['terms']}"/>
-                        <p:selectBooleanCheckbox value="#{userController.acceptTerms}"/>
+                        <p:selectBooleanCheckbox value="#{editController.acceptTerms}"/>
 
                         <f:facet name="footer">
-                            <p:remoteCommand id="rc" name="rc" update="msgs" actionListener="#{userController.addMessage}"/>
-                            <p:commandButton delay="1500" value="#{msg['save']}" onclick="rc()" action="#{userController.reinit}" icon="ui-icon-check">
-                                <p:collector value="#{userController.customer}" addTo="#{userController.customers}" unique="true"/>
-                            </p:commandButton>
+
+                            <p:commandButton delay="1500" value="#{msg['save']}" onclick="rc()" action="#{editController.saveCustomer}" icon="ui-icon-check"/>
 
                             <p:commandButton type="reset" value="#{msg['reset']}" icon="ui-icon-refresh" style="margin-right:20px;"/>
                         </f:facet>

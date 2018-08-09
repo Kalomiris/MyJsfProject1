@@ -251,19 +251,19 @@ public class EditController implements Serializable {
     }
 
 //    private void saveMessage() {
-//        LanguageResource lrs = new LanguageResource();
+//        Localizer lrs = new Localizer();
 //        addInfoMessage(lrs.getLanguageResource("Saved"), lrs.getLanguageResource("Customer added successfully!"));
 //    }
 
 
 //    private void saveMessageDuplex() {
-//        LanguageResource lrs = new LanguageResource();
+//        Localizer lrs = new Localizer();
 //        addWarnMessage(lrs.getLanguageResource("Duplex"), lrs.getLanguageResource("This customer is already Existed!"));
 //    }
 
 
 //    public void warnMessage() {
-//        LanguageResource lrs = new LanguageResource();
+//        Localizer lrs = new Localizer();
 //        addWarnMessage(lrs.getLanguageResource("Invalid"), lrs.getLanguageResource("Something goes wrong with customer!"));
 //    }
 

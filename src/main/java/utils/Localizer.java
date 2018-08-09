@@ -1,11 +1,11 @@
-package language;
+package utils;
 
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class LanguageResource  implements Serializable{
+public class Localizer implements Serializable{
 
     private static final long serialVersionUID = 5832557409506265601L;
 

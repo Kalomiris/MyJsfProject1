@@ -1,6 +1,6 @@
 package Service;
 
-import dataBase.DataBase;
+import dataBase.DataBaseSimulation;
 import model.Customer;
 
 import java.io.Serializable;
@@ -16,15 +16,15 @@ public class CustomerService implements Serializable{
 
 //    @PostConstruct
     public static void initDataService() {
-        DataBase.runOnlyOnceCustomer();
-//        list = DataBase.getCustomerList();
+        DataBaseSimulation.runOnlyOnceCustomer();
+//        list = DataBaseSimulation.getCustomerList();
     }
 
     public static void delete(Customer customer){
-        DataBase.deleteCustomer(customer);
+        DataBaseSimulation.deleteCustomer(customer);
     }
 
     public static List<Customer> getCustomerList() {
-        return DataBase.getCustomerList();
+        return DataBaseSimulation.getCustomerList();
     }
 }
