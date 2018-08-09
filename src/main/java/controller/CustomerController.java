@@ -26,7 +26,7 @@ public class CustomerController implements Serializable {
     @PostConstruct
     private static void init() {
         CustomerService.initDataService();
-        customers = CustomerService.getList();
+        customers = CustomerService.getCustomerList();
     }
 
 //    public void setCustomerService(CustomerService customerService) {
@@ -55,13 +55,13 @@ public class CustomerController implements Serializable {
     }
 
 //    public String onPageRedirect(){
-//        customers = CustomerService.getList();
+//        customers = CustomerService.getCustomerList();
 //        return "editCustomer?faces-redirect=true";
 //    }
 //
 //
 //    public String goBack(){
-//        customers = CustomerService.getList();
+//        customers = CustomerService.getCustomerList();
 //        return "home?faces-redirect=true";
 //    }
 

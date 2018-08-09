@@ -4,18 +4,21 @@ import model.Customer;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public class DataBase implements Serializable{
+public class DataBase implements Serializable {
 
     private static final long serialVersionUID = -1058834760623324195L;
+
     private static List<Customer> customerList = new ArrayList<>();
+    private static Map<String, Map<String, String>> data = new HashMap<>();
+    private static Map<String, String> countries;
+    private static Map<String, String> cities;
 
-    private static boolean alreadyExecuted = false;
+    private static boolean isExecutedInitCustomer = false;
+    private static boolean isExecutedInitLocation = false;
 
-    private static void initData(){
+    private static void initCustomer() {
         Customer customer1 = new Customer();
         customer1.setFirstName("John");
         customer1.setLastName("Daniz");
@@ -30,7 +33,7 @@ public class DataBase implements Serializable{
 
         Customer customer2 = new Customer();
         customer2.setFirstName("Nick");
-        customer2.setLastName("Jonson");
+        customer2.setLastName("Kalomiris");
         customer2.setUser("Nick_Jonson");
         customer2.setBirthDate(randomDateOfBirth());
         customer2.setCountry("USA");
@@ -53,7 +56,7 @@ public class DataBase implements Serializable{
         customer3.setEmail("john1@gmail.com");
 
         Customer customer4 = new Customer();
-        customer4.setFirstName("Jim");
+        customer4.setFirstName("Tim");
         customer4.setLastName("Fotiadis");
         customer4.setUser("Jim_Fotiadis");
         customer4.setBirthDate(randomDateOfBirth());
@@ -83,10 +86,49 @@ public class DataBase implements Serializable{
         customerList.add(customer5);
     }
 
-    public static void runOnlyOnce(){
-        if (!alreadyExecuted) {
-            initData();
-            alreadyExecuted = true;
+    private static void initLocation() {
+        countries = new HashMap<>();
+        countries.put("USA", "USA");
+        countries.put("Germany", "Germany");
+        countries.put("Brazil", "Brazil");
+        countries.put("Greece", "Greece");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("New York", "New York");
+        map.put("San Francisco", "San Francisco");
+        map.put("Denver", "Denver");
+        data.put("USA", map);
+
+        map = new HashMap<>();
+        map.put("Berlin", "Berlin");
+        map.put("Munich", "Munich");
+        map.put("Frankfurt", "Frankfurt");
+        data.put("Germany", map);
+
+        map = new HashMap<>();
+        map.put("Sao Paolo", "Sao Paolo");
+        map.put("Rio de Janerio", "Rio de Janerio");
+        map.put("Salvador", "Salvador");
+        data.put("Brazil", map);
+
+        map = new HashMap<>();
+        map.put("Athens", "Athens");
+        map.put("Volos", "Volos");
+        map.put("Patra", "Patra");
+        data.put("Greece", map);
+    }
+
+    public static void runOnlyOnceCustomer() {
+        if (!isExecutedInitCustomer) {
+            initCustomer();
+            isExecutedInitCustomer = true;
+        }
+    }
+
+    public static void runOnlyOnceLocation() {
+        if (!isExecutedInitLocation) {
+            initLocation();
+            isExecutedInitLocation = true;
         }
     }
 
@@ -94,22 +136,60 @@ public class DataBase implements Serializable{
         return customerList;
     }
 
-    public static void save(Customer customer){
+    public static void save(Customer customer) {
         customerList.add(customer);
     }
 
-    public static void deleteCustomer(Customer customer){
+    public static Customer find(int id) {
+        for (Customer customer : customerList) {
+            if (id == customer.getId()) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    public static void deleteCustomer(Customer customer) {
         customerList.remove(customer);
     }
 
+    public static boolean isDuplex(Customer customer) {
+        for (Customer element : customerList) {
+            if (customerList.contains(customer)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static Date randomDateOfBirth() {
-        int day = randBetween(1,28);
-        int month = randBetween(1,12);
+        int day = randBetween(1, 28);
+        int month = randBetween(1, 12);
         int year = randBetween(1900, 2018);
         return java.sql.Date.valueOf(LocalDate.of(year, month, day));
     }
 
     private static int randBetween(int start, int end) {
         return start + (int) Math.round(Math.random() * (end - start));
+    }
+
+    public static Map<String, String> getCountries() {
+        return countries;
+    }
+
+    public static Map<String, String> getCities() {
+        return cities;
+    }
+
+    public static Map<String, Map<String, String>> getData() {
+        return data;
+    }
+
+    public static void onCountryChange(String country) {
+        if (country != null && !country.equals("")) {
+            cities = data.get(country);
+        } else {
+            cities = new HashMap<>();
+        }
     }
 }

@@ -25,6 +25,10 @@ public class Customer implements Serializable {
         this.id = getIndex();
     }
 
+    public Customer(int id){
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
@@ -113,7 +117,6 @@ public class Customer implements Serializable {
         return index++;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -121,10 +124,6 @@ public class Customer implements Serializable {
 
         Customer customer = (Customer) o;
 
-        if (id != customer.id) return false;
-        if (!firstName.equals(customer.firstName)) return false;
-        if (!lastName.equals(customer.lastName)) return false;
         return user.equals(customer.user);
     }
-
 }
