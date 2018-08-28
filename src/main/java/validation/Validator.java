@@ -1,69 +1,98 @@
 package validation;
 
+import model.Customer;
+
 import java.io.Serializable;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator implements Serializable {
+
     private static final long serialVersionUID = 3581515804518705261L;
+
+    private static final String NAME_PATTERN = "^[a-zA-Z]{2,40}$";
+    private static final String USERNAME_PATTERN = "^[a-z0-9-A-z]{2,40}$";
+    private static final String NUMBER_PATTERN = "^[0-9]{2,30}$";
+    //TODO:make email
+    private static final String EMAIL_PATTERN = "^[a-zA-Z]{2,40}$";
     private Pattern pattern;
 
-    public Validator(String REGEX){
-        pattern = Pattern.compile(REGEX);
-    }
-
     /**
-     * Validate username with regular expression
-     * @param input input for validation
+     * Validate customer with regular expression in methods below
+     *
+     * @param customer for validation
      * @return true valid input, false invalid input
      */
-    public boolean validate(final String input) {
-        Matcher matcher = pattern.matcher(input);
-        return matcher.matches();
+    public boolean validate(final Customer customer) throws Exception {
+        try {
+            if (!validateFirstName(customer.getFirstName()) ||
+                    !validateLastName(customer.getLastName()) ||
+                    !validateUserName(customer.getUserName()) ||
+                    !validateCountry(customer.getCity()) ||
+                    !validateCity(customer.getCity()) ||
+                    !validateStreet(customer.getStreet()) ||
+                    !validateZipCode(customer.getZipCode()) ||
+                    !validatePhone(customer.getPhoneNumber()) ||
+                    !validateEmail(customer.getEmail())) {
+
+                return false;
+            }
+        } catch (Exception e) {
+            throw new Exception ("Your input is wrong, try again!");
+        }
+        return true;
     }
 
-//    public boolean validateDate(final Date input) {
-//        Matcher matcher = pattern.matcher(input.toString());
-//
-//        if(matcher.matches()){
-//
-//            matcher.reset();
-//
-//            if(matcher.find()){
-//
-//                String day = matcher.group(1);
-//                String month = matcher.group(2);
-//                int year = Integer.parseInt(matcher.group(3));
-//
-//                if (day.equals("31") &&
-//                        (month.equals("4") || month .equals("6") || month.equals("9") ||
-//                                month.equals("11") || month.equals("04") || month .equals("06") ||
-//                                month.equals("09"))) {
-//                    return false; // only 1,3,5,7,8,10,12 has 31 days
-//                } else if (month.equals("2") || month.equals("02")) {
-//                    //leap year
-//                    if(year % 4==0){
-//                        if(day.equals("30") || day.equals("31")){
-//                            return false;
-//                        }else{
-//                            return true;
-//                        }
-//                    }else{
-//                        if(day.equals("29")||day.equals("30")||day.equals("31")){
-//                            return false;
-//                        }else{
-//                            return true;
-//                        }
-//                    }
-//                }else{
-//                    return true;
-//                }
-//            }else{
-//                return false;
-//            }
-//        }else{
-//            return false;
-//        }
-//    }
+    private boolean validateFirstName(String input) {
+        pattern = Pattern.compile(NAME_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
 
+    private boolean validateLastName(String input) {
+        pattern = Pattern.compile(NAME_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validateUserName(String input) {
+        pattern = Pattern.compile(USERNAME_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validateCountry(String input) {
+        pattern = Pattern.compile(NAME_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validateCity(String input) {
+        pattern = Pattern.compile(NAME_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validateStreet(String input) {
+        pattern = Pattern.compile(NAME_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validateZipCode(String input) {
+        pattern = Pattern.compile(NUMBER_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validatePhone(String input) {
+        pattern = Pattern.compile(NUMBER_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
+
+    private boolean validateEmail(String input) {
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        boolean result = pattern.matcher(input).matches();
+        return result;
+    }
 }

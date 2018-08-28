@@ -19,23 +19,13 @@ public class CustomerController implements Serializable {
     private static final long serialVersionUID = 2744527592489782284L;
     private static List<Customer> customers;
     private static List<Customer> filteredCustomers;
-
-//    @ManagedProperty(value = "#{customerService}")
-//    private CustomerService customerService;
+    private CustomerService customerService = new CustomerService();
 
     @PostConstruct
-    private static void init() {
-        CustomerService.initDataService();
-        customers = CustomerService.getCustomerList();
+    private void init() {
+        customerService.initDataService();
+        customers = customerService.getCustomerList();
     }
-
-//    public void setCustomerService(CustomerService customerService) {
-//        this.customerService = customerService;
-//    }
-//
-//    public CustomerService getCustomerService() {
-//        return customerService;
-//    }
 
     public List<Customer> getFilteredCustomers() {
         return filteredCustomers;
@@ -51,21 +41,10 @@ public class CustomerController implements Serializable {
 
     public void deleteCustomer(Customer customer){
         deleteMessage();
-        CustomerService.delete(customer);
+        customerService.delete(customer);
     }
 
-//    public String onPageRedirect(){
-//        customers = CustomerService.getCustomerList();
-//        return "editCustomer?faces-redirect=true";
-//    }
-//
-//
-//    public String goBack(){
-//        customers = CustomerService.getCustomerList();
-//        return "home?faces-redirect=true";
-//    }
-
-    public void deleteMessage() {
+    private void deleteMessage() {
         Localizer lrs = new Localizer();
         addMessage(lrs.getLanguageResource("successfull"), lrs.getLanguageResource("deleted"));
     }
@@ -74,6 +53,5 @@ public class CustomerController implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-
 
 }

@@ -6,12 +6,11 @@ import java.util.Date;
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = -3236628994413307722L;
-    private static int index = 1;
 
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
-    private String user;
+    private String userName;
     private Date birthDate;
     private String country;
     private String city;
@@ -20,17 +19,20 @@ public class Customer implements Serializable {
     private String phoneNumber;
     private String email;
 
-
     public Customer() {
-        this.id = getIndex();
+
     }
 
-    public Customer(int id){
+    public Customer(Long id){
         this.id = id;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -49,12 +51,12 @@ public class Customer implements Serializable {
         return lastName;
     }
 
-    public String getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getCountry() {
@@ -113,10 +115,6 @@ public class Customer implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public int getIndex(){
-        return index++;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,6 +122,6 @@ public class Customer implements Serializable {
 
         Customer customer = (Customer) o;
 
-        return user.equals(customer.user);
+        return userName.equals(customer.userName);
     }
 }

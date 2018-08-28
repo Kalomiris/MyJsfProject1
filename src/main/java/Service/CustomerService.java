@@ -6,25 +6,21 @@ import model.Customer;
 import java.io.Serializable;
 import java.util.List;
 
-
-//@ManagedBean(name = "customerService")
-//@RequestScoped
 public class CustomerService implements Serializable{
 
-    private static final long serialVersionUID = -6851187912764155763L;
-//    private static List<Customer> list = new ArrayList<>();
 
-//    @PostConstruct
-    public static void initDataService() {
-        DataBaseSimulation.runOnlyOnceCustomer();
-//        list = DataBaseSimulation.getCustomerList();
+    private static final long serialVersionUID = 4524233348929636912L;
+    private DataBaseSimulation dataBaseSimulation = new DataBaseSimulation();
+
+    public void initDataService() {
+        dataBaseSimulation.runOnlyOnceCustomer();
     }
 
-    public static void delete(Customer customer){
-        DataBaseSimulation.deleteCustomer(customer);
+    public void delete(Customer customer){
+        dataBaseSimulation.deleteCustomer(customer);
     }
 
-    public static List<Customer> getCustomerList() {
-        return DataBaseSimulation.getCustomerList();
+    public List<Customer> getCustomerList() {
+        return dataBaseSimulation.getCustomerList();
     }
 }

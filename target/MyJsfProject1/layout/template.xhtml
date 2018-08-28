@@ -12,7 +12,7 @@
     <title>CusomerApp</title>
 </h:head>
 
-<f:view locale="#{language.localeCode}"/>
+<f:view locale="#{utils.localeCode}"/>
 <h:body>
     <p:growl id="msgs" showDetail="true"/>
     <p:layout fullPage="true">
@@ -23,9 +23,9 @@
             </div>
             <h:form>
                 <div align="right">
-                    <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-                                     valueChangeListener="#{language.countryLocaleCodeChanged}">
-                        <f:selectItems value="#{language.countriesInMap}"/>
+                    <h:selectOneMenu value="#{utils.localeCode}" onchange="submit()"
+                                     valueChangeListener="#{utils.countryLocaleCodeChanged}">
+                        <f:selectItems value="#{utils.countriesInMap}"/>
                     </h:selectOneMenu>
                 </div>
             </h:form>

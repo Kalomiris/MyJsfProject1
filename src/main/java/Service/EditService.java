@@ -7,39 +7,43 @@ import java.util.Map;
 
 public class EditService {
 
-    public static void initLocation() {
-        DataBaseSimulation.runOnlyOnceLocation();
+    private DataBaseSimulation dataBaseSimulation = new DataBaseSimulation();
+
+    public void initLocation() {
+        dataBaseSimulation.runOnlyOnceLocation();
     }
 
-    public static Map<String, String> getCountries() {
-        return DataBaseSimulation.getCountries();
+    public Map<String, String> getCountries() {
+        return dataBaseSimulation.getCountries();
     }
 
-    public static Map<String, String> getCities() {
-        return DataBaseSimulation.getCities();
+    public Map<String, String> getCities() {
+        return dataBaseSimulation.getCities();
     }
 
-    public static void onCountryChange(String country) {
-        DataBaseSimulation.onCountryChange(country);
+    public void onCountryChange(String country) {
+        dataBaseSimulation.onCountryChange(country);
     }
 
-    public static Customer findCustomer(int id) {
-        if (id != 0) {
-            return DataBaseSimulation.find(id);
-        }
-        return null;
+    public Customer findCustomer(Long id) {
+            return dataBaseSimulation.find(id);
     }
 
-    public static boolean isDuplex(Customer customer){
-        if (customer != null){
-            return DataBaseSimulation.isDuplex(customer);
-        }
-        //TODO: throw exception
-        return false;
+    public boolean userNameExists(Customer customer) {
+        return customer != null && dataBaseSimulation.userNameExists(customer);
     }
+//TODO: Make validator
+    public void saveCustomer(Customer customer) {
+//        try {
+//            Validator validator = new Validator();
+//            if (customer != null && validator.validate(customer)) {
+//                DataBaseSimulation.save(customer);
 
-    public static void saveCustomer(Customer customer){
-        if (customer != null)
-        DataBaseSimulation.save(customer);
+//        } catch (Exception e) {
+//            throw new NullPointerException("Error");
+//        }
+
+            dataBaseSimulation.save(customer);
+
     }
 }

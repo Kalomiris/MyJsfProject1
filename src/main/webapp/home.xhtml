@@ -45,14 +45,14 @@
                                 <h:outputText value="#{customer.lastName}"/>
                             </p:column>
 
-                            <p:column headerText="#{msg['user']}" sortBy="#{customer.user}" filterBy="#{customer.user}">
-                                <h:outputText value="#{customer.user}"/>
+                            <p:column headerText="#{msg['userName']}" sortBy="#{customer.userName}" filterBy="#{customer.userName}">
+                                <h:outputText value="#{customer.userName}"/>
                             </p:column>
 
                             <p:column style="width:90px">
-                                <p:button outcome="editCustomer?faces-redirect=true" icon="ui-icon-pencil">
-                                    <f:param name="id" value="#{customer.id}"/>
-                                </p:button>
+
+
+                                <p:commandButton action="#{editController.editCustomer(customer.id)}" icon="ui-icon-pencil"/>
 
                                 <p:commandButton icon="ui-icon-trash"
                                                  actionListener="#{customerController.deleteCustomer(customer)}"
