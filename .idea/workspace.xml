@@ -7,42 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="185fd07e-70fb-49dd-a0f5-824681816e49" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Exception/InvalidInputException.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarIssues.xml" afterPath="$PROJECT_DIR$/.idea/sonarIssues.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/CustomerService.java" afterPath="$PROJECT_DIR$/src/main/java/Service/CustomerService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Service/EditService.java" afterPath="$PROJECT_DIR$/src/main/java/Service/EditService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/CustomerController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/EditController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/EditController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataBase/DataBaseSimulation.java" afterPath="$PROJECT_DIR$/src/main/java/dataBase/DataBaseSimulation.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Customer.java" afterPath="$PROJECT_DIR$/src/main/java/model/Customer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/validation/Validator.java" afterPath="$PROJECT_DIR$/src/main/java/validation/Validator.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/languageFiles/language.properties" afterPath="$PROJECT_DIR$/src/main/resources/languageFiles/language.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/languageFiles/language_es.properties" afterPath="$PROJECT_DIR$/src/main/resources/languageFiles/language_es.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/editCustomer.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/editCustomer.xhtml" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/home.xhtml" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/template.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/layout/template.xhtml" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/Service/CustomerService.class" afterPath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/Service/CustomerService.class" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/controller/CustomerController.class" afterPath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/controller/CustomerController.class" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/dataBase/DataBase.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/language/LanguageBean.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/language/LanguageResource.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/languageFiles/language.properties" afterPath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/languageFiles/language.properties" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/languageFiles/language_es.properties" afterPath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/languageFiles/language_es.properties" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/model/Customer.class" afterPath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/model/Customer.class" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/validation/Validator.class" afterPath="$PROJECT_DIR$/target/MyJsfProject1/WEB-INF/classes/validation/Validator.class" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/editCustomer.xhtml" afterPath="$PROJECT_DIR$/target/MyJsfProject1/editCustomer.xhtml" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/home.xhtml" afterPath="$PROJECT_DIR$/target/MyJsfProject1/home.xhtml" />
-      <change beforePath="$PROJECT_DIR$/target/MyJsfProject1/layout/template.xhtml" afterPath="$PROJECT_DIR$/target/MyJsfProject1/layout/template.xhtml" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/CustomerService.class" afterPath="$PROJECT_DIR$/target/classes/Service/CustomerService.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/CustomerController.class" afterPath="$PROJECT_DIR$/target/classes/controller/CustomerController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dataBase/DataBase.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/language/LanguageBean.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/language/LanguageResource.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/languageFiles/language.properties" afterPath="$PROJECT_DIR$/target/classes/languageFiles/language.properties" />
-      <change beforePath="$PROJECT_DIR$/target/classes/languageFiles/language_es.properties" afterPath="$PROJECT_DIR$/target/classes/languageFiles/language_es.properties" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Customer.class" afterPath="$PROJECT_DIR$/target/classes/model/Customer.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/validation/Validator.class" afterPath="$PROJECT_DIR$/target/classes/validation/Validator.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -865,7 +830,7 @@
       <workItem from="1533882732028" duration="24856000" />
       <workItem from="1533925558701" duration="6968000" />
       <workItem from="1534142543376" duration="1323000" />
-      <workItem from="1535456296294" duration="2717000" />
+      <workItem from="1535456296294" duration="2866000" />
     </task>
     <task id="LOCAL-00001" summary="Remove simulation from CustomerService">
       <created>1533150736728</created>
@@ -895,11 +860,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533816688613</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="changes">
+      <created>1535460904312</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1535460904312</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366482000" />
+    <option name="totallyTimeSpent" value="366631000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1020,7 +992,8 @@
     <MESSAGE value="remove randomDateOfBirth and randBetween from CustomerService to DataBase" />
     <MESSAGE value="continue dev" />
     <MESSAGE value="name refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="name refactoring" />
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1127,6 +1100,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1281,6 +1255,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="42" column="16" lean-forward="false" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
