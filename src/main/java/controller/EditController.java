@@ -8,28 +8,34 @@ import utils.Localizer;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
 @ManagedBean(name = "editController")
-@RequestScoped
+@ViewScoped
 public class EditController implements Serializable {
 
     private static final long serialVersionUID = -4876525344689517081L;
-
+    private Map<String, String> countries;
+    private Map<String, String> cities;
     private Customer customer;
-    private boolean acceptTerms;
+
     private Long id;
 
     private EditService editService = new EditService();
 
     @PostConstruct
     public void init() {
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        id = (Long) flash.get("id");
         customer = new Customer();
-        editService.initLocation();
+        countries = editService.getCountries();
+        initCustomer();
+        onCountryChange();
     }
 
     private void initCustomer() {
@@ -61,36 +67,28 @@ public class EditController implements Serializable {
 
     }
 
-    public boolean isAcceptTerms() {
-        return acceptTerms;
-    }
-
-    public void setAcceptTerms(boolean acceptTerms) {
-        this.acceptTerms = acceptTerms;
-    }
-
     public Map<String, String> getCountries() {
-        return editService.getCountries();
+        return countries;
     }
 
     public Map<String, String> getCities() {
-        return editService.getCities();
+        return cities;
     }
 
     public void onCountryChange() {
-        String country = customer.getCountry();
-        editService.onCountryChange(country);
+        cities = editService.getCities(customer.getCountry());
     }
 
-    public String saveCustomer() {
+    public void saveCustomer() {
+        saveMessage();
         editService.saveCustomer(customer);
-        return "home?faces-redirect=true";
+
     }
 
-//    private void saveMessage() {
-//        Localizer lrs = new Localizer();
-//        addInfoMessage(lrs.getLanguageResource("Saved"), lrs.getLanguageResource("Customer added successfully!"));
-//    }
+    private void saveMessage() {
+        Localizer lrs = new Localizer();
+        addInfoMessage(lrs.getLanguageResource("Saved"), lrs.getLanguageResource("Customer added successfully!"));
+    }
 
 
     private void saveMessageDuplex() {

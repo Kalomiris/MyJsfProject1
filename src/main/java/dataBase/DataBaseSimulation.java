@@ -10,20 +10,27 @@ public class DataBaseSimulation implements Serializable {
 
     private static final long serialVersionUID = -1058834760623324195L;
 
-    private static List<Customer> customerList = new LinkedList<>();
-    private static Map<String, Map<String, String>> data = new HashMap<>();
+    private static List<Customer> customerList;
+    private static Map<String, Map<String, String>> data;
     private static Map<String, String> countries;
     private static Map<String, String> cities;
+    private static Long autoIncrementId = 1L;
 
     private static boolean isExecutedInitCustomer = false;
     private static boolean isExecutedInitLocation = false;
 
+    public DataBaseSimulation() {
+        if (customerList == null){
+            initCustomer();
+        }
+        if (countries ==null || cities == null || data == null){
+            initLocation();
+        }
+    }
+
     private void initCustomer() {
-
-        // simulate auto increment id
-        Long autoIncrementId = 1L;
-
-        Customer customer1 = new Customer(autoIncrementId++);
+        customerList = new LinkedList<>();
+        Customer customer1 = new Customer();
         customer1.setFirstName("John");
         customer1.setLastName("Daniz");
         customer1.setUserName("John_Daniz");
@@ -34,11 +41,12 @@ public class DataBaseSimulation implements Serializable {
         customer1.setZipCode("1121");
         customer1.setPhoneNumber("20019882");
         customer1.setEmail("john@gmail.com");
+        save(customer1);
 
-        Customer customer2 = new Customer(autoIncrementId++);
+        Customer customer2 = new Customer();
         customer2.setFirstName("Nick");
-        customer2.setLastName("Kantas");
-        customer2.setUserName("Nick_kantas");
+        customer2.setLastName("Jason");
+        customer2.setUserName("Nick_Jason");
         customer2.setBirthDate(randomDateOfBirth());
         customer2.setCountry("USA");
         customer2.setCity("Denver");
@@ -46,8 +54,9 @@ public class DataBaseSimulation implements Serializable {
         customer2.setZipCode("1121");
         customer2.setPhoneNumber("20019862");
         customer2.setEmail("Nick@gmail.com");
+        save(customer2);
 
-        Customer customer3 = new Customer(autoIncrementId++);
+        Customer customer3 = new Customer();
         customer3.setFirstName("George");
         customer3.setLastName("Kakogiannis");
         customer3.setUserName("George_kakogiannis");
@@ -58,8 +67,9 @@ public class DataBaseSimulation implements Serializable {
         customer3.setZipCode("1551");
         customer3.setPhoneNumber("20023212");
         customer3.setEmail("george@gmail.com");
+        save(customer3);
 
-        Customer customer4 = new Customer(autoIncrementId++);
+        Customer customer4 = new Customer();
         customer4.setFirstName("Tim");
         customer4.setLastName("Fotiadis");
         customer4.setUserName("Jim_Fotiadis");
@@ -70,8 +80,9 @@ public class DataBaseSimulation implements Serializable {
         customer4.setZipCode("99121");
         customer4.setPhoneNumber("65019882");
         customer4.setEmail("jim@gmail.com");
+        save(customer4);
 
-        Customer customer5 = new Customer(autoIncrementId++);
+        Customer customer5 = new Customer();
         customer5.setFirstName("Jim");
         customer5.setLastName("Nicolson");
         customer5.setUserName("Jim_Nicolson");
@@ -82,15 +93,11 @@ public class DataBaseSimulation implements Serializable {
         customer5.setZipCode("991111");
         customer5.setPhoneNumber("65876882");
         customer5.setEmail("jim1@gmail.com");
-
-        customerList.add(customer1);
-        customerList.add(customer2);
-        customerList.add(customer3);
-        customerList.add(customer4);
-        customerList.add(customer5);
+        save(customer5);
     }
 
     private void initLocation() {
+        data = new HashMap<>();
         countries = new HashMap<>();
         countries.put("USA", "USA");
         countries.put("Germany", "Germany");
@@ -141,15 +148,14 @@ public class DataBaseSimulation implements Serializable {
     }
 
     public void save(Customer customer) {
-        if (customer.getId() > 0) {
+        if (customer.getId() != null) {
             Long id = customer.getId();
             Customer removedCustomer = find(id);
             deleteCustomer(removedCustomer);
             customerList.add(customer);
         }else {
             // simulate auto increment id
-            Long maxId = customerList.get(customerList.size() - 1).getId();
-            customer.setId(maxId + 1);
+            customer.setId(autoIncrementId++);
             customerList.add(customer);
         }
     }
@@ -191,7 +197,8 @@ public class DataBaseSimulation implements Serializable {
         return countries;
     }
 
-    public Map<String, String> getCities() {
+    public Map<String, String> getCities(String country) {
+         cities = data.get(country);
         return cities;
     }
 

@@ -9,16 +9,13 @@ public class EditService {
 
     private DataBaseSimulation dataBaseSimulation = new DataBaseSimulation();
 
-    public void initLocation() {
-        dataBaseSimulation.runOnlyOnceLocation();
-    }
 
     public Map<String, String> getCountries() {
         return dataBaseSimulation.getCountries();
     }
 
-    public Map<String, String> getCities() {
-        return dataBaseSimulation.getCities();
+    public Map<String, String> getCities(String country) {
+        return dataBaseSimulation.getCities(country);
     }
 
     public void onCountryChange(String country) {

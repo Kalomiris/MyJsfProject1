@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,8 +24,13 @@ public class CustomerController implements Serializable {
 
     @PostConstruct
     private void init() {
-        customerService.initDataService();
         customers = customerService.getCustomerList();
+    }
+
+    public String editCustomer(Long id){
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        flash.put("id", id);
+        return "editCustomer?faces-redirect=true&includeViewParams=true";
     }
 
     public List<Customer> getFilteredCustomers() {

@@ -18,10 +18,12 @@ public class Customer implements Serializable {
     private String zipCode;
     private String phoneNumber;
     private String email;
+    private boolean acceptTerms;
 
     public Customer() {
 
     }
+
 
     public Customer(Long id){
         this.id = id;
@@ -115,6 +117,14 @@ public class Customer implements Serializable {
         this.birthDate = birthDate;
     }
 
+    public boolean isAcceptTerms() {
+        return acceptTerms;
+    }
+
+    public void setAcceptTerms(boolean acceptTerms) {
+        this.acceptTerms = acceptTerms;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,6 +132,11 @@ public class Customer implements Serializable {
 
         Customer customer = (Customer) o;
 
-        return userName.equals(customer.userName);
+        return id.equals(customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }

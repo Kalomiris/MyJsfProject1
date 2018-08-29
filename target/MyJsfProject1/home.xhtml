@@ -52,16 +52,14 @@
                             <p:column style="width:90px">
 
 
-                                <p:commandButton action="#{editController.editCustomer(customer.id)}" icon="ui-icon-pencil"/>
-
-                                <p:commandButton icon="ui-icon-trash"
-                                                 actionListener="#{customerController.deleteCustomer(customer)}"
+                                <p:commandLink action="#{customerController.editCustomer(customer.id)}" value="edit" icon="ui-icon-pencil"/>
+                            </p:column>
+                            <p:column style="width:90px">
+                                <p:commandLink icon="ui-icon-trash" value="delete" actionListener="#{customerController.deleteCustomer(customer)}"
                                                  update=":form1:customers1 :form1:messages" process=":form1:customers1">
                                     <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
                                     <p:ajax update=""/>
-                                </p:commandButton>
-
-
+                                </p:commandLink>
                             </p:column>
 
                         </p:dataTable>

@@ -6,15 +6,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <f:metadata>
-        <f:viewParam name="id" value="#{editController.id}"/>
-    </f:metadata>
+
 </h:head>
 
 <h:body>
     <ui:composition template="layout/template.xhtml">
         <ui:define name="content">
-            <h:form>
+            <h:form id = "form">
                 <p:growl id="msgs" showDetail="true"/>
 
                 <p:panel id="basic" header="#{msg['edit']}" style="margin-bottom:20px">
@@ -56,7 +54,6 @@
                             <p:ajax listener="#{editController.onCountryChange}" update="city"/>
                             <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
                             <f:selectItems value="#{editController.countries}"/>
-                            <f:validateLength minimum="2" maximum="20"/>
                         </p:selectOneMenu>
                         <p:message for="country" id="msgcountry" display="icon"/>
 
@@ -68,6 +65,7 @@
 
                         </p:selectOneMenu>
                         <p:message for="city" id="msgcity" display="icon"/>
+
 
                         <p:outputLabel for="street" value="#{msg['street']}"/>
                         <p:inputText id="street" value="#{editController.customer.street}" label="Street"
@@ -101,26 +99,20 @@
                         <p:message for="email" id="msgEmail" display="icon"/>
 
                         <h:outputText value="#{msg['terms']}"/>
-                        <p:selectBooleanCheckbox value="#{editController.acceptTerms}"/>
-
-                        <f:facet name="footer">
-
-                            <p:commandButton delay="1500" value="#{msg['save']}" onclick="rc()"
-                                             action="#{editController.saveCustomer}" icon="ui-icon-check"/>
-
-                            <p:commandButton type="reset" value="#{msg['reset']}" icon="ui-icon-refresh"
-                                             style="margin-right:20px;"/>
-                        </f:facet>
+                        <p:selectBooleanCheckbox value="#{editController.customer.acceptTerms}"/>
 
                     </h:panelGrid>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{msg['save']}" id="save" update=":form:msgs @parent" actionListener="#{editController.saveCustomer()}" icon="ui-icon-check"/>
+                    </f:facet>
                 </p:panel>
             </h:form>
 
             <p:separator/>
 
-            <h:form>
-                <h:commandButton action="home?faces-redirect=true" value="#{msg['back']}"/>
-            </h:form>
+            <div>
+                <p:button outcome="home?faces-redirect=true" value="#{msg['back']}"/>
+            </div>
 
         </ui:define>
     </ui:composition>

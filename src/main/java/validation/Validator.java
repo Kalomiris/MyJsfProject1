@@ -63,13 +63,15 @@ public class Validator implements Serializable {
     private boolean validateCountry(String input) {
         pattern = Pattern.compile(NAME_PATTERN);
         boolean result = pattern.matcher(input).matches();
-        return result;
+//        return result;
+    return true;
     }
 
     private boolean validateCity(String input) {
         pattern = Pattern.compile(NAME_PATTERN);
         boolean result = pattern.matcher(input).matches();
-        return result;
+//        return result;
+    return true;
     }
 
     private boolean validateStreet(String input) {

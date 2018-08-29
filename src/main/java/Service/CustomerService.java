@@ -12,10 +12,6 @@ public class CustomerService implements Serializable{
     private static final long serialVersionUID = 4524233348929636912L;
     private DataBaseSimulation dataBaseSimulation = new DataBaseSimulation();
 
-    public void initDataService() {
-        dataBaseSimulation.runOnlyOnceCustomer();
-    }
-
     public void delete(Customer customer){
         dataBaseSimulation.deleteCustomer(customer);
     }
