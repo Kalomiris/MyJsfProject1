@@ -52,7 +52,7 @@ public class CustomerController implements Serializable {
 
     private void deleteMessage() {
         Localizer lrs = new Localizer();
-        addMessage(lrs.getLanguageResource("successfull"), lrs.getLanguageResource("deleted"));
+        addMessage(lrs.getLanguageResource("successful"), lrs.getLanguageResource("deleted"));
     }
 
     private void addMessage(String summary, String detail) {

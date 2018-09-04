@@ -2,6 +2,7 @@ package Service;
 
 import dataBase.DataBaseSimulation;
 import model.Customer;
+import validation.Validator;
 
 import java.util.Map;
 
@@ -29,18 +30,14 @@ public class EditService {
     public boolean userNameExists(Customer customer) {
         return customer != null && dataBaseSimulation.userNameExists(customer);
     }
-//TODO: Make validator
-    public void saveCustomer(Customer customer) {
-//        try {
-//            Validator validator = new Validator();
-//            if (customer != null && validator.validate(customer)) {
-//                DataBaseSimulation.save(customer);
 
-//        } catch (Exception e) {
-//            throw new NullPointerException("Error");
-//        }
+    public void saveCustomer(Customer customer) throws Exception {
+            Validator validator = new Validator();
+            if (customer != null && validator.validate(customer)) {
+                dataBaseSimulation.save(customer);
+            }
 
-            dataBaseSimulation.save(customer);
+//            dataBaseSimulation.save(customer);
 
     }
 }

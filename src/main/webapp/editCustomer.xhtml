@@ -27,8 +27,7 @@
                         <p:message id="msgFirstname" for="firstname" display="icon"/>
 
                         <p:outputLabel for="lastname" value="#{msg['lName']}"/>
-                        <p:inputText id="lastname" value="#{editController.customer.lastName}" required="true"
-                                     label="Lastname">
+                        <p:inputText id="lastname" value="#{editController.customer.lastName}" required="true" label="Lastname">
                             <f:validateLength minimum="2" maximum="40"/>
                             <p:ajax update="msgLastname" event="keyup"/>
                         </p:inputText>
@@ -43,14 +42,11 @@
                         <p:message for="username" id="msgUsername" display="icon"/>
 
                         <p:outputLabel for="birthDate" value="#{msg['birth']}"/>
-                        <p:calendar id="birthDate" value="#{editController.customer.birthDate}" required="true">
-                            <p:ajax event="dateSelect" listener="#{editController.onDateSelect}" update="msgbirthDate"/>
-                        </p:calendar>
+                        <p:calendar id="birthDate" value="#{editController.customer.birthDate}" required="true"/>
                         <p:message for="birthDate" id="msgbirthDate" display="icon"/>
 
                         <p:outputLabel for="country" value="#{msg['country']}"/>
-                        <p:selectOneMenu id="country" value="#{editController.customer.country}" required="true"
-                                         style="width:190px">
+                        <p:selectOneMenu id="country" value="#{editController.customer.country}" required="true" style="width:190px">
                             <p:ajax listener="#{editController.onCountryChange}" update="city"/>
                             <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
                             <f:selectItems value="#{editController.countries}"/>
@@ -58,34 +54,29 @@
                         <p:message for="country" id="msgcountry" display="icon"/>
 
                         <p:outputLabel for="city" value="#{msg['city']}"/>
-                        <p:selectOneMenu id="city" value="#{editController.customer.city}" required="true"
-                                         style="width:190px">
+                        <p:selectOneMenu id="city" value="#{editController.customer.city}" required="true" style="width:190px">
                             <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true"/>
                             <f:selectItems value="#{editController.cities}"/>
-
                         </p:selectOneMenu>
                         <p:message for="city" id="msgcity" display="icon"/>
 
 
                         <p:outputLabel for="street" value="#{msg['street']}"/>
-                        <p:inputText id="street" value="#{editController.customer.street}" label="Street"
-                                     required="true">
+                        <p:inputText id="street" value="#{editController.customer.street}" label="Street" required="true">
                             <f:validateLength minimum="2" maximum="40"/>
                             <p:ajax update="msgStreet" event="keyup"/>
                         </p:inputText>
                         <p:message for="street" id="msgStreet" display="icon"/>
 
                         <p:outputLabel for="zip" value="#{msg['zip']}"/>
-                        <p:inputText id="zip" value="#{editController.customer.zipCode}" label="Zipcode"
-                                     required="true">
+                        <p:inputText id="zip" value="#{editController.customer.zipCode}" label="Zipcode" required="true">
                             <f:validateLength minimum="2" maximum="20"/>
                             <p:ajax update="msgZip" event="keyup"/>
                         </p:inputText>
                         <p:message for="zip" id="msgZip" display="icon"/>
 
                         <p:outputLabel for="phone" value="#{msg['phone']}"/>
-                        <p:inputText id="phone" value="#{editController.customer.phoneNumber}" label="Phonenumber"
-                                     required="true">
+                        <p:inputText id="phone" value="#{editController.customer.phoneNumber}" label="Phonenumber" required="true">
                             <f:validateLength minimum="2" maximum="20"/>
                             <p:ajax update="msgPhone" event="keyup"/>
                         </p:inputText>
@@ -93,7 +84,7 @@
 
                         <p:outputLabel for="email" value="#{msg['email']}"/>
                         <p:inputText id="email" value="#{editController.customer.email}" label="Email" required="true">
-
+                            <f:validateLength minimum="2" maximum="20"/>
                             <p:ajax update="msgEmail" event="keyup"/>
                         </p:inputText>
                         <p:message for="email" id="msgEmail" display="icon"/>

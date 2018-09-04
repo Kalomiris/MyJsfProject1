@@ -2,7 +2,6 @@ package controller;
 
 import Service.EditService;
 import model.Customer;
-import org.primefaces.event.SelectEvent;
 import utils.Localizer;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Map;
 
 @ManagedBean(name = "editController")
@@ -44,27 +42,12 @@ public class EditController implements Serializable {
         }
     }
 
-    public String editCustomer(Long id) {
-        this.id = id;
-        initCustomer();
-        return "editCustomer?faces-redirect=true&includeViewParams=true";
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-
     }
 
     public Map<String, String> getCountries() {
@@ -79,41 +62,26 @@ public class EditController implements Serializable {
         cities = editService.getCities(customer.getCountry());
     }
 
-    public void saveCustomer() {
-        saveMessage();
-        editService.saveCustomer(customer);
-
+    public void saveCustomer() throws Exception {
+        if (customer.isAcceptTerms()) {
+            saveMessage();
+            editService.saveCustomer(customer);
+        }else {
+            warnMessage();
+        }
     }
 
     private void saveMessage() {
         Localizer lrs = new Localizer();
-        addInfoMessage(lrs.getLanguageResource("Saved"), lrs.getLanguageResource("Customer added successfully!"));
+        addMessage(lrs.getLanguageResource("successful"), lrs.getLanguageResource("saved"));
     }
 
-
-    private void saveMessageDuplex() {
+    private void warnMessage() {
         Localizer lrs = new Localizer();
-        addWarnMessage(lrs.getLanguageResource("Duplex"), lrs.getLanguageResource("This customer is already Existed!"));
+        addMessage(lrs.getLanguageResource("warn"), lrs.getLanguageResource("acceptTerms"));
     }
 
-
-//    public void warnMessage() {
-//        Localizer lrs = new Localizer();
-//        addWarnMessage(lrs.getLanguageResource("Invalid"), lrs.getLanguageResource("Something goes wrong with customer!"));
-//    }
-
-    public void onDateSelect(SelectEvent event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        SimpleDateFormat format = new SimpleDateFormat("YYYY/dd/MM");
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
-    }
-
-    private void addWarnMessage(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-
-    private void addInfoMessage(String summary, String detail) {
+    private void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }

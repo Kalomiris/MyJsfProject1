@@ -12,7 +12,6 @@ public class Validator implements Serializable {
     private static final String NAME_PATTERN = "^[a-zA-Z]{2,40}$";
     private static final String USERNAME_PATTERN = "^[a-z0-9-A-z]{2,40}$";
     private static final String NUMBER_PATTERN = "^[0-9]{2,30}$";
-    //TODO:make email
     private static final String EMAIL_PATTERN = "^[a-zA-Z]{2,40}$";
     private Pattern pattern;
 
@@ -27,8 +26,6 @@ public class Validator implements Serializable {
             if (!validateFirstName(customer.getFirstName()) ||
                     !validateLastName(customer.getLastName()) ||
                     !validateUserName(customer.getUserName()) ||
-                    !validateCountry(customer.getCity()) ||
-                    !validateCity(customer.getCity()) ||
                     !validateStreet(customer.getStreet()) ||
                     !validateZipCode(customer.getZipCode()) ||
                     !validatePhone(customer.getPhoneNumber()) ||
@@ -58,20 +55,6 @@ public class Validator implements Serializable {
         pattern = Pattern.compile(USERNAME_PATTERN);
         boolean result = pattern.matcher(input).matches();
         return result;
-    }
-
-    private boolean validateCountry(String input) {
-        pattern = Pattern.compile(NAME_PATTERN);
-        boolean result = pattern.matcher(input).matches();
-//        return result;
-    return true;
-    }
-
-    private boolean validateCity(String input) {
-        pattern = Pattern.compile(NAME_PATTERN);
-        boolean result = pattern.matcher(input).matches();
-//        return result;
-    return true;
     }
 
     private boolean validateStreet(String input) {

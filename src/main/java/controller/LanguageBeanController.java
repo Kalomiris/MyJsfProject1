@@ -58,6 +58,6 @@ public class LanguageBeanController implements Serializable{
     private void addMessage() {
         Localizer lrs = new Localizer();
         FacesContext.getCurrentInstance().addMessage
-                (null, new FacesMessage(FacesMessage.SEVERITY_INFO, lrs.getLanguageResource("successfull"),  lrs.getLanguageResource("languageReverse")));
+                (null, new FacesMessage(FacesMessage.SEVERITY_INFO, lrs.getLanguageResource("successful"),  lrs.getLanguageResource("languageReverse")));
     }
 }

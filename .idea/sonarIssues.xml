@@ -248,6 +248,41 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/AllowFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/CacheControlFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/CorsFeature.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/DynamicFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/RequestFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/ResponseFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-rest/src/main/java/com/afse/rest/webfilter/ResposnseFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../Advantage_FSE_final/human-resources-service/src/main/java/com/afse/service/service/DepartmentService.java">
           <value>
             <set />
@@ -604,6 +639,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../my_test/src/main/java/test.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../passportcontrol-ministry-of-interior/pom.xml">
           <value>
             <set />
           </value>
